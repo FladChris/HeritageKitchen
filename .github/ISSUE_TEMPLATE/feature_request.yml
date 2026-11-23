@@ -1,0 +1,21 @@
+name: Feature request
+description: Suggest an idea for Heritage Kitchen
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Heritage Kitchen is intentionally small. Meal planning, shopping lists,
+        web recipe import and nutrition data are out of scope.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What would you like to do?
+      description: Describe the situation and what is missing today.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Idea
+      description: How could Heritage Kitchen help?
