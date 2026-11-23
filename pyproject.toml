@@ -1,0 +1,37 @@
+[project]
+name = "heritagekitchen"
+version = "0.1.0"
+description = "Self-hosted cookbook for small private or shared setups"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.20.1",
+    "cryptography>=46",
+    "email-validator>=2.2.0",
+    "fastapi>=0.139.2,<0.140.0",
+    "filelock>=4.2.12",
+    "pillow>=13.0.0",
+    "pwdlib[argon2]>=0.3.0",
+    "python-multipart>=0.0.32",
+    "reportlab>=4.4,<5",
+    "scalar-fastapi>=1.9.1",
+    "sqlalchemy>=2.0.41",
+    "uvicorn>=0.48.0",
+]
+
+[project.optional-dependencies]
+postgres = [
+    "psycopg[binary]>=3.2.0",
+]
+
+[dependency-groups]
+dev = [
+    "httpx2>=2.2.0",
+    "pypdf>=6,<7",
+    "pytest>=9.0.3",
+    "ruff>=0.17.3",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

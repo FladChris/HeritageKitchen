@@ -1,0 +1,44 @@
+{
+	"name": "site",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"test": "node --test tests/*.test.mjs && npm run test:ui",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"test:ui": "vitest run --config vitest.config.ts"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-static": "^4.0.1",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
+		"@testing-library/dom": "^10.4.2",
+		"@testing-library/svelte": "^5.4.2",
+		"@types/node": "^26.6.6",
+		"fake-indexeddb": "^6.2.4",
+		"jsdom": "^31.0.0",
+		"prettier": "^3.10.1",
+		"prettier-plugin-svelte": "^4.1.1",
+		"svelte": "^5.57.2",
+		"svelte-check": "^4.6.0",
+		"typescript": "^6.0.3",
+		"vite": "^8.3.0",
+		"vitest": "^5.1.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
+	},
+	"dependencies": {
+		"@fontsource-variable/fraunces": "^5.3.0",
+		"@fontsource-variable/inter": "^5.3.0",
+		"@fontsource-variable/source-serif-4": "^5.3.1",
+		"@lucide/svelte": "^1.72.0",
+		"cropperjs": "^1.6.2"
+	}
+}

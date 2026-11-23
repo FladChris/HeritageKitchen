@@ -1,0 +1,4 @@
+# Local backup-operation locks and accidental local archive destinations.
+.backup.lock
+.backup-wrapper.lock
+backups/

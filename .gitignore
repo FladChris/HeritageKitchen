@@ -1,0 +1,41 @@
+# Python caches
+__pycache__/
+*.py[codz]
+
+# Virtual environment
+.venv/
+
+# Test and tool caches
+.pytest_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Local database files
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Local runtime data and secrets
+data/
+images/
+recipe-images/
+certs/
+acme-data/
+.env
+.env.*
+!.env.example
+
+# Frontend dependencies and build output
+node_modules/
+.svelte-kit/
+build/
+dist/
+
+# Local workspace files
+.tmpv/
+.vscode/
+..local/
+.ua/

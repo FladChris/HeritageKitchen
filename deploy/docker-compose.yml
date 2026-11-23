@@ -1,0 +1,24 @@
+name: heritagekitchen
+
+services:
+  heritagekitchen:
+    image: ghcr.io/fladchris/heritagekitchen:${HERITAGEKITCHEN_TAG:-latest}
+    container_name: heritagekitchen
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-sqlite:////data/heritagekitchen.db}
+      SESSION_COOKIE_SECURE: ${SESSION_COOKIE_SECURE:-auto}
+      FORWARDED_ALLOW_IPS: ${FORWARDED_ALLOW_IPS:-127.0.0.1}
+      RESET_BASE_URL: ${RESET_BASE_URL:-}
+      MAIL_CREDENTIALS_KEY: ${MAIL_CREDENTIALS_KEY:-}
+    ports:
+      # Loopback keeps the app port local and supports a reverse proxy on this host.
+      - '${APP_BIND_IP:-127.0.0.1}:${HTTP_PORT:-8081}:8000'
+    volumes:
+      - ./data:/data
+      - ./recipe-images:/app/recipe-images
+    networks:
+      - heritagekitchen
+
+networks:
+  heritagekitchen:
