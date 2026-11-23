@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: Backend (${{ matrix.database }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        database: [sqlite, postgresql]
+    services:
+      postgres:
+        image: ${{ matrix.database == 'postgresql' && 'postgres:18' || '' }}
+        env:
+          POSTGRES_USER: heritagekitchen
+          POSTGRES_PASSWORD: heritagekitchen
+          POSTGRES_DB: heritagekitchen_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U heritagekitchen -d heritagekitchen_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      TEST_DATABASE_URL: ${{ matrix.database == 'postgresql' && 'postgresql+psycopg://heritagekitchen:heritagekitchen@localhost:5432/heritagekitchen_test' || '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --frozen --extra postgres
+      - run: uv run ruff check .
+      - run: uv run pytest
+
+  frontend:
+    name: Frontend
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.15.0
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - run: npm ci
+      - run: npm run check
+      - run: npm test
+      - run: npm run build

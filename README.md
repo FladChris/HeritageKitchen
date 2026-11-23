@@ -1,5 +1,7 @@
 # Heritage Kitchen
 
+[![CI](https://github.com/FladChris/HeritageKitchen/actions/workflows/ci.yml/badge.svg)](https://github.com/FladChris/HeritageKitchen/actions/workflows/ci.yml)
+
 A self-hosted family cookbook with a German interface. **Early release 0.1.0.** [Changelog](CHANGELOG.md) · [Screenshots](docs/screenshots.md)
 
 ## Why Heritage Kitchen?

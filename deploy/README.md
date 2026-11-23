@@ -143,6 +143,12 @@ python3 backup.py restore "$archive" --writers-stopped
 After a successful restore, run `docker compose up -d` and check `/health`,
 login, and recipe photos.
 
+## Release images
+
+Pushing a version tag such as `v0.1.0` runs the release workflow. It builds the
+image natively for `linux/amd64` and `linux/arm64` and publishes
+`ghcr.io/fladchris/heritagekitchen` with the tags `0.1.0`, `0.1` and `latest`.
+
 ## Build and publish images manually
 
 From the repository root, choose a release version. Authenticate with GHCR
