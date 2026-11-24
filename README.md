@@ -6,15 +6,19 @@ A self-hosted family cookbook with a German interface. **Early release 0.1.0.** 
 
 ## Why Heritage Kitchen?
 
-Keep family recipes, photos and the stories behind them in one place. The installed app keeps a full offline copy of the cookbook, including photos, on each signed-in device after its first sync. Heritage Kitchen stays small enough to run as a single container with built-in storage.
+Heritage Kitchen brings together the handwritten recipe books of grandparents, parents and your own generation into a single digital family cookbook, making family recipes easy to access, share and preserve wherever you are.
 
-The scope excludes meal planning, shopping lists, web recipe import or scraping, and nutrition data. This release uses local accounts and has no SSO or OpenID Connect (OIDC) integration.
+Keep family recipes, photos and the stories behind them in one place. Add new recipes while baking with family, adjust serving sizes without manual calculations and leave the physical cookbooks at home.
+
+The installed app keeps a full offline copy of the cookbook, including photos, on each signed-in device after its first sync. Heritage Kitchen stays small enough to run as a single container with built-in storage.
+
+The scope excludes meal planning, shopping lists, web recipe import or scraping, and nutrition data.
 
 ## Features
 
 - Group ingredients, add family stories and source notes, and split recipes into named days with timed steps.
 - Add up to 20 photos per recipe with cropping, alt text and a swipeable gallery.
-- Search titles, ingredients, steps and comments with or without accents. Organize recipes with categories, favorites and personal sorting.
+- Search titles, ingredients, steps and comments. Organize recipes with categories, favorites and personal (individual for each user) sorting.
 - Scale servings and check off ingredients and steps in cooking mode. The interface supports keyboard and screen reader navigation.
 - Share recipes as text or links, or print them to PDF. Administrators can export the cookbook as a JSON ZIP with photos or as a PDF.
 - Read as a guest, or sign in to cook along, comment and rate in half-star increments. Reader, editor and admin roles support shared editing with approval for new registrations.
@@ -43,10 +47,9 @@ services:
       MAIL_CREDENTIALS_KEY: ${MAIL_CREDENTIALS_KEY:-}
 ```
 
-Open `http://localhost:8081` on the server and register: the first account
-becomes the administrator. Anyone who can reach the instance can read the
-recipes, so keep it in your home network or behind a VPN, and use HTTPS through
-a reverse proxy so phones can install the app.
+Open `http://localhost:8081` on the server and register: the first account becomes the administrator. Anyone who can reach the instance can read the recipes, so keep it in your home network or behind a VPN.
+
+Heritage Kitchen can be used over HTTP in a regular browser. HTTPS is required for full PWA functionality, including app installation and offline access on mobile devices.
 
 The [deployment guide](deploy/README.md) covers Unraid/Portainer template
 values, `docker run`, building from source, platforms, HTTPS, email, backups
